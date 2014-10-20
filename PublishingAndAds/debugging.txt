@@ -1,0 +1,1 @@
+adb logcat Corona:V *:S

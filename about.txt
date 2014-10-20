@@ -1,0 +1,14 @@
+Create Mobile Games with Corona - http://pragprog.com/book/sdcorona/create-mobile-games-with-corona
+
+Assets used in the code examples: 
+- Tileset by Daniel Cook from Lost Garden (lostgarden.com)
+- Spaceships and space backgrounds by G. Domenech
+- Explosion sprite sheet by Cliff Harris from Positech Games (positech.co.uk)
+- Pathfinding and Loading and Saving UI assets by Lamoot from OpenGameArt (http://opengameart.org/users/lamoot)
+- Crates by Luke.RustLtd from OpenGameArt (http://opengameart.org/users/lukerustltd)
+
+Sounds: 
+- Missile Launch by Kibblesbob - http://soundbible.com/1794-Missle-Launch.html
+- Explosion by Mike Koenig - http://soundbible.com/1234-Bomb.html
+- Space Fighter Loop by Kevin MacLeod (incompetech.com) - http://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100672
+- Pinball Spring by Kevin MacLeod (incompetech.com) - http://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100741

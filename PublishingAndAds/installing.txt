@@ -1,0 +1,6 @@
+-- First, uninstall the app
+--  Use reverse domain notation
+adb uninstall com.mydomain.gamename
+-- Now install it again
+--  Use the apk name
+adb install PublishGame.apk

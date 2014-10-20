@@ -1,0 +1,62 @@
+-- Supported values for orientation:
+-- portrait, portraitUpsideDown, landscapeLeft, landscapeRight
+
+-- START:appIcons
+-- START:androidPermissions
+settings = {
+-- END:androidPermissions
+    -- END:appIcons
+    orientation = {
+        default = "portrait",
+        supported = { "portrait", }
+    },
+    
+    -- START:appIcons
+    iphone = {
+        plist = {
+            -- Application icons
+            CFBundleIconFile = "Icon.png",
+            CFBundleIconFiles = {
+                "Icon.png", 
+                "Icon@2x.png", 
+                "Icon-72.png", 
+            },
+            -- END:appIcons
+             
+            UIStatusBarHidden = false,
+            UIPrerenderedIcon = true, -- set to false for "shine" overlay
+            --UIApplicationExitsOnSuspend = true, -- uncomment to quit app on suspend
+
+        -- START:appIcons
+        }
+    },
+    -- END:appIcons
+    
+    -- START:androidPermissions
+    -- Add Android billing permissions
+    -- END:androidPermissions
+    -- START:androidInternet
+    -- Add Android Internet access permissions
+    -- START:androidPermissions
+    android = 
+    {
+        usesPermissions =
+        {
+            -- END:androidInternet
+            "com.android.vending.BILLING",
+            -- START:androidInternet
+            -- END:androidPermissions
+            "android.permission.INTERNET",
+            "android.permission.ACCESS_NETWORK_STATE",
+            "android.permission.READ_PHONE_STATE",
+            -- START:androidPermissions
+         }
+    }
+    -- END:androidInternet
+    -- END:androidPermissions
+    
+    -- START:appIcons
+    -- START:androidPermissions
+}
+-- END:appIcons
+-- END:androidPermissions

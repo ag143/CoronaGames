@@ -1,0 +1,4 @@
+-- START:openSSLCertReq
+openssl req -new -newkey rsa:2048 -out csr.csr ^
+-subj "/emailAddress=email@yoursite.com, CN=Team Leader Name"
+-- END:openSSLCertReq
