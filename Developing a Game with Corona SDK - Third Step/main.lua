@@ -11,7 +11,7 @@ _W 			= display.contentWidth; -- Get the width of the screen
 _H 			= display.contentHeight; -- Get the height of the screen
 motionx 	= 0; -- Variable used to move character along x axis
 speed 		= 5; -- Set Walking Speed
-playerInAir = true; -- Set a boolean of whether our guy is in the air or not
+playerInAir = true; -- Set a boolean of whether our kiwi is in the air or not
 score 		= 0; -- Set Score to 0
 snd_coin    = audio.loadSound("coin.wav") -- Set coin variable
 
@@ -33,11 +33,12 @@ local grass_bottom = display.newImage( "images/grass_bottom.png", true )
 local grass_top = display.newImage( "images/grass_top.png", true)
 	grass_top.x = _W/2; grass_top.y = _H-95;
 
--- Add Guy		
-guy = display.newImage( "images/guy.png" )
-	physics.addBody( guy, "dynamic", { friction=0.5, bounce=0 } ) 
-	guy.x = math.random(100,_W-100); guy.y = 170;
-	guy.myName = "guy"
+-- Add kiwi		
+	kiwi = display.newImage( "images/kiwi.png" )
+	physics.addBody( kiwi, "dynamic", { friction=0.5, bounce=0 } ) 
+	kiwi.x = math.random(100,_W-100); 
+	kiwi.y = 170;
+	kiwi.myName = "kiwi"
 
 -- Add Left Wall
 local left_wall = display.newRect(-5,0,5,_H)
@@ -62,11 +63,16 @@ local up = display.newImage ("images/btn_arrow.png")
 	up.rotation = 270;
 
 -- Add Score to Screen
-local playerScore = display.newText("Score: "..score, 0, 0, native.systemFont, 16);
+local playerScore = display.newText("Score: "..score, 0, 8, native.systemFont, 16);
 	playerScore:setTextColor(0, 0, 0);
+	playerScore.anchorX = 0
 -- End Graphic Elements
 --*****************
-	
+local credit = display.newText("Developed by Timothy Lok", 0, 8, native.systemFont, 16);
+	credit:setTextColor(0, 0, 0);
+	credit.anchorX = 0.5
+	credit.x = _W/2
+
 	
 --******************
 -- Add Game Functionality
@@ -80,10 +86,10 @@ end
 Runtime:addEventListener("touch", stop )
 
 -- Move character
-local function moveguy (event)
-	guy.x = guy.x + motionx;	
+local function movekiwi (event)
+	kiwi.x = kiwi.x + motionx;	
 end
-Runtime:addEventListener("enterFrame", moveguy)
+Runtime:addEventListener("enterFrame", movekiwi)
 
 -- When left arrow is touched, move character left
 function left:touch()
@@ -101,15 +107,15 @@ right:addEventListener("touch",right)
 function up:touch(event)
 	if(event.phase == "began" and playerInAir == false) then
 		playerInAir = true
-		guy:setLinearVelocity( 0, -200 )
+		kiwi:setLinearVelocity( 0, -200 )
 	end
 end
 up:addEventListener("touch",up)
 
 -- Detect whether the player is in the air or not
 function onCollision( event )
-	-- If guy is touching grass, allow jump
-	if(event.object1.myName == "grass" and event.object2.myName == "guy") then
+	-- If kiwi is touching grass, allow jump
+	if(event.object1.myName == "grass" and event.object2.myName == "kiwi") then
 		playerInAir = false;
 	end
 
@@ -118,8 +124,8 @@ function onCollision( event )
 		event.object2:removeSelf();
 	end
 
-	-- If guy collides with coin, remove coin
-	if(event.object1.myName == "guy" and event.object2.myName == "coin") then
+	-- If kiwi collides with coin, remove coin
+	if(event.object1.myName == "kiwi" and event.object2.myName == "coin") then
 		score = score + 1;
 		playerScore.text = "Score: " .. score
 		event.object2:removeSelf();
@@ -128,10 +134,18 @@ function onCollision( event )
 end
 Runtime:addEventListener( "collision", onCollision )
 
-function createCoin()	
-	coin = display.newCircle( math.random(20,_W-20), -25, math.random(8,14) )
-	coin:setFillColor(math.random(245,255),math.random(210,223),7)
-	coin:setStrokeColor(0,0,0)
+
+
+function createCoin()
+	
+	coin = display.newImageRect("images/coin.png", 25, 25);
+ 
+	-- 5. Generate balloons randomly on the X-coordinate
+	coin.x = math.random(20, _W-20);
+	coin.y = math.random(8,14);
+	--print ("coin.x = " + coin.x)
+ 
+	-- 7. Apply physics engine to the balloons, set density, friction, bounce and radius
 	physics.addBody( coin, "dynamic" )
 	coin.myName = "coin"
 end
