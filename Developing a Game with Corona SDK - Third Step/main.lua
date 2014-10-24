@@ -26,7 +26,7 @@ local sky = display.newImage( "images/background_sky.png", true )
 local grass_bottom = display.newImage( "images/grass_bottom.png", true )
 	physics.addBody( grass_bottom, "static", { friction=0.5, bounce=0.3 } )
 	grass_bottom.x = _W/2; grass_bottom.y = _H-35;
-	grass_bottom:setReferencePoint(display.BottomLeftReferencePoint);
+	--grass_bottom:setReferencePoint(display.BottomLeftReferencePoint);
 	grass_bottom.myName = "grass"
 
 -- Add Grass to the background
